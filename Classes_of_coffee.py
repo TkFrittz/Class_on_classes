@@ -31,10 +31,10 @@ coffee_map = {
     "Hot Latte": hot_latte,
     "Iced Latte": iced_latte,
     "Drip Coffee": drip_coffee_with_cream,
-    "Black Drip Coffee" or "Black": black_drip_coffee,
+    "Black Drip Coffee": black_drip_coffee,
 }
 
-coffee_of_choice = input("Hello, What drink would you like to know about? Your options are: Hot Latte, Iced Latte, Drip Coffee, or Black Drip Coffee \n ")
+coffee_of_choice = input("Hello, What drink would you like to know about? Your options are: Hot Latte, Iced Latte, Drip Coffee, or Black Drip Coffee \n ").strip().lower().title()
 
 if coffee_of_choice in coffee_map:
     coffee_map[coffee_of_choice].explain_coffee()
