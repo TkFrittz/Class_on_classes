@@ -1,4 +1,7 @@
 # Class on Classes.. With coffee
+
+import sys
+
 class coffee_class:
     def __init__(self,name,espresso,milk,foam,ice,hot):
         self.name = name
@@ -28,15 +31,38 @@ black_drip_coffee = coffee_class("Black Drip",False,False,False,False,True)
 
 
 coffee_map = {
-    "Hot Latte": hot_latte,
-    "Iced Latte": iced_latte,
-    "Drip Coffee": drip_coffee_with_cream,
-    "Black Drip Coffee": black_drip_coffee,
+    "hotlatte": hot_latte,
+    "icedlatte": iced_latte,
+    "dripcoffee": drip_coffee_with_cream,
+    "blackdripcoffee": black_drip_coffee,
 }
 
-coffee_of_choice = input("Hello, What drink would you like to know about? Your options are: Hot Latte, Iced Latte, Drip Coffee, or Black Drip Coffee \n ").strip().lower().title()
+print("Welcome to the Coffee Shop!")
 
-if coffee_of_choice in coffee_map:
-    coffee_map[coffee_of_choice].explain_coffee()
-else:
-    print("Sorry I don't Understand. Leave my coffee shop you heathen!")
+
+def normalize_input(user_input):
+    return user_input.lower().replace(" ", "")
+
+def get_user_choice():
+    print("Your options are: Hot Latte, Iced Latte, Drip Coffee, or Black Drip Coffee\n")
+    attempts = 3
+    while attempts > 0:
+        user_input = input("Which drink would you like to know about? ").strip()
+        normalized = normalize_input(user_input)
+        if normalized in coffee_map:
+            return coffee_map[normalized]
+        else:
+            attempts -= 1
+            print(f"😬 Sorry, I didn't catch that. You have {attempts} tries left.\n")
+    print("Too many failed attempts. Come back when you know your coffee. ☕")
+    return None
+
+
+# Run it Up bro!
+selected_coffee = get_user_choice()
+
+if selected_coffee:
+    selected_coffee.explain_coffee()
+    print("Thank you for shopping with Coffee Class!")
+    print("Goodbye!")
+    sys.exit()
