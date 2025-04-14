@@ -1,3 +1,4 @@
+# Class on Classes.. With coffee
 class coffee_class:
     def __init__(self,name,espresso,milk,foam,ice,hot):
         self.name = name
